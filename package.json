@@ -1,0 +1,18 @@
+{
+  "name": "mandal",
+  "version": "1.0.0",
+  "description": "Web client of Mandalart",
+  "author": "hrqsn &lt;jp.hrqsn@gmail.com&gt;",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0",
+    "@nuxtjs/dotenv": "^1.4.0"
+  },
+  "devDependencies": {}
+}
