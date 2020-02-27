@@ -27,6 +27,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/vubuggyfill.js' }
   ],
   /*
   ** Nuxt.js dev-modules

@@ -1,20 +1,20 @@
 <template>
   <div>
     <md-navbar />
-    <md-panel />
+    <md-collection />
     <md-footer />
   </div>
 </template>
 
 <script>
-import MdNavbar from '~/components/organisms/Navbar.vue'
-import MdPanel from '~/components/organisms/Panel.vue'
+import MdNavbar from '~/components/organisms/navbar/MainNavbar.vue'
+import MdCollection from '~/components/organisms/Collection.vue'
 import MdFooter from '~/components/organisms/Footer.vue'
 
 export default {
   components: {
     MdNavbar,
-    MdPanel,
+    MdCollection,
     MdFooter
   }
 }

@@ -1,8 +1,8 @@
 <template>
   <header class="o-navBar">
     <div class="o-navBar__inner">
+      <div class="o-navBar__empty"></div>
       <span class="o-navBar__logo">Mandal</span>
-      <span class="o-navBar__title">コミュニティ</span>
       <div class="o-navBar__nav">
         <div class="o-navBar__navItem">
           <Switcher20 />
@@ -31,13 +31,16 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .o-navBar__empty {
+      width: 100%;
+    }
     .o-navBar__logo {
-      padding-left: 16px;
       color: $white;
       font-family: 'IBM Plex Sans', sans-serif;
-      font-weight: 600;
+      font-weight: bold;
       font-size: 20px;
       width: calc(100% - 16px);
+      text-align: center;
     }
     .o-navBar__title {
       color: $white;
@@ -48,6 +51,7 @@ export default {
       width: 100%;
       display: flex;
       justify-content: flex-end;
+      cursor: pointer;
       &Item {
         width: 48px;
         height: 48px;
