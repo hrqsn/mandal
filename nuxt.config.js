@@ -22,8 +22,7 @@ export default {
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  css: [{ src: '~/assets/scss/main.scss', lang: 'scss' }],
   /*
   ** Plugins to load before mounting the App
   */
@@ -40,7 +39,17 @@ export default {
   modules: [
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    'nuxt-webfontloader',
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    scss: ['./assets/scss/modules/*.scss']
+  },
+  webfontloader: {
+    google: {
+      families: ['IBM+Plex+Sans']
+    }
+  },
   /*
   ** Build configuration
   */

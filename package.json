@@ -1,8 +1,8 @@
 {
-  "name": "mandal",
-  "version": "1.0.0",
+  "name": "Mandal",
+  "version": "0.1.0",
   "description": "Web client of Mandalart",
-  "author": "hrqsn &lt;jp.hrqsn@gmail.com&gt;",
+  "author": "hrqsn <jp.hrqsn@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -10,9 +10,21 @@
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3333"
+    }
+  },
   "dependencies": {
+    "@carbon/icons-vue": "^10.8.2",
+    "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "cross-env": "^7.0.0",
+    "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
-    "@nuxtjs/dotenv": "^1.4.0"
+    "nuxt-webfontloader": "^1.1.0",
+    "sass-loader": "^8.0.2"
   },
   "devDependencies": {}
 }

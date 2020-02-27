@@ -1,0 +1,50 @@
+// Color
+$gray-100: #161616;
+$gray-80: #393939;
+$gray-40: #a8a8a8;
+$gray-20: #e0e0e0;
+$gray-10: #f4f4f4;
+$white: #fff;
+$blue: #0064ff;
+$blue-hover: #0052eb;
+
+// Light
+:root {
+  // Background
+  --background: #{$gray-100};
+
+  // Text
+  --text: #{$gray-100};
+  --text-primary: #{$blue};
+
+  // Input
+  --placeholder: #{$gray-40};
+
+  // Border
+  --border: #{$gray-20};
+}
+
+// Text
+$text: var(--text);
+$text-primary: var(--text-primary);
+
+// Font
+$font-size: 16px;
+$font-family: system-ui, -apple-system, 'Roboto', 'Arial', 'Hiragino Sans', sans-serif;
+$line-height: 1.6;
+
+// Input
+$placeholder: var(--placeholder);
+
+// Border
+$border: var(--border);
+
+// Background
+$background: var(--background);
+
+// MediaQueries
+$breakpoints: (
+  sm: 672px,
+  md: 1056px,
+  lg: 1312px
+);
