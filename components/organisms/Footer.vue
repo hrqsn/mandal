@@ -26,6 +26,7 @@ export default {
       text-align: center;
       width: 100%;
       font-size: 14px;
+      font-family: 'IBM Plex Sans', sans-serif;
       a {
         color: #00acee;
       }

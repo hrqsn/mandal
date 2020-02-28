@@ -1,31 +1,31 @@
 <template>
   <div class="o-panel">
     <div class="o-panel__wrapper">
-      <div class="card" data-animation="8">
+      <div class="card" data-cell="8">
         <span contenteditable="true">{{ data["0"]["8"] }}</span>
       </div>
-      <div class="card" data-animation="1">
+      <div class="card" data-cell="1">
         <span contenteditable="true">{{ data["0"]["1"] }}</span>
       </div>
-      <div class="card" data-animation="2">
+      <div class="card" data-cell="2">
         <span contenteditable="true">{{ data["0"]["2"] }}</span>
       </div>
-      <div class="card" data-animation="7">
+      <div class="card" data-cell="7">
         <span contenteditable="true">{{ data["0"]["7"] }}</span>
       </div>
-      <div class="card" data-animation="0">
+      <div class="card" data-cell="0">
         <span contenteditable="true" @input="title">{{ data["0"]["0"] }}</span>
       </div>
-      <div class="card" data-animation="3">
+      <div class="card" data-cell="3">
         <span contenteditable="true">{{ data["0"]["3"] }}</span>
       </div>
-      <div class="card" data-animation="6">
+      <div class="card" data-cell="6">
         <span contenteditable="true">{{ data["0"]["6"] }}</span>
       </div>
-      <div class="card" data-animation="5">
+      <div class="card" data-cell="5">
         <span contenteditable="true">{{ data["0"]["5"] }}</span>
       </div>
-      <div class="card" data-animation="4">
+      <div class="card" data-cell="4">
         <span contenteditable="true">{{ data["0"]["4"] }}</span>
       </div>
       <!--   3*3
@@ -147,6 +147,9 @@ export default {
   methods: {
     title(e) {
       this.$nuxt.$emit('TITLE', e.target.innerText);
+    },
+    sync(e) {
+      console.log(JSON.stringify(this.data))
     }
   }
 }
@@ -175,33 +178,34 @@ export default {
       cursor: pointer;
       span {
         cursor: text;
+        outline-width: 1px;
         width: 100%;
       }
-      &[data-animation="0"] { 
-        animation: fadein 0s ease 0.0001s 1 forwards;
+      &[data-cell="0"] { 
+        opacity: 1;
       }
-      &[data-animation="1"] { 
+      &[data-cell="1"] { 
         animation: fadein 0.2s ease 0.2s 1 forwards;
       }
-      &[data-animation="2"] { 
+      &[data-cell="2"] { 
         animation: fadein 0.2s ease 0.26s 1 forwards;
       }
-      &[data-animation="3"] { 
+      &[data-cell="3"] { 
         animation: fadein 0.2s ease 0.2s 1 forwards;
       }
-      &[data-animation="4"] { 
+      &[data-cell="4"] { 
         animation: fadein 0.2s ease 0.26s 1 forwards;
       }
-      &[data-animation="5"] { 
+      &[data-cell="5"] { 
         animation: fadein 0.2s ease 0.2s 1 forwards;
       }
-      &[data-animation="6"] { 
+      &[data-cell="6"] { 
         animation: fadein 0.2s ease 0.26s 1 forwards;
       }
-      &[data-animation="7"] { 
+      &[data-cell="7"] { 
         animation: fadein 0.2s ease 0.2s 1 forwards;
       }
-      &[data-animation="8"] { 
+      &[data-cell="8"] { 
         animation: fadein 0.2s ease 0.26s 1 forwards;
       }
     }
