@@ -5,7 +5,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: 'Mandal🔮',
+    title: 'Mandal',
     meta: [
       { charset: 'utf-8' },
       { lang: 'ja' },
@@ -13,7 +13,17 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'apple-touch-icon',
+        href: '/apple-touch-icon.png',
+        sizes: '180x180'
+      },
+      {
+        rel: 'icon',
+        href: '/android-chrome-256x256.png',
+        sizes: '256x256'
+      }
     ]
   },
   /*

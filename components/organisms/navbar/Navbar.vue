@@ -2,9 +2,9 @@
   <header class="o-navBar">
     <div class="o-navBar__inner">
       <div class="o-navBar__brand">
-        <nuxt-link to="/" class="o-navBar__brandItem">
+        <div class="o-navBar__brandItem" @click="close">
           <Close24 />
-        </nuxt-link>
+        </div>
       </div>
       <span class="o-navBar__title">{{ this.title }}</span>
       <div class="o-navBar__nav">
@@ -52,8 +52,11 @@ export default {
       this.$nuxt.$emit('SAVE', this.title);
     },
     scale() {
-      this.$nuxt.$emit('SCALE', this.title);
+      this.$nuxt.$emit('SCALE');
       this.isMin = !this.isMin;
+    },
+    close() {
+      this.$nuxt.$emit('CLOSE');
     }
   }
 }

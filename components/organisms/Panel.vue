@@ -47,6 +47,7 @@ export default {
       isMin: true,
       isAnimation: true,
       isAlreadyCreated: false,
+      isChanged: false,
       cells: {
         "0": {
           "0": "",
@@ -155,6 +156,7 @@ export default {
     title(i, e) {
       this.$nuxt.$emit('TITLE', e.target.innerText);
       this.$set(this.cells[this.mainCellVal], i, e.target.innerText);
+      this.isChanged = true;
     },
     move(d) {
       // 中央のセルをタップするとメインテーマに戻る
@@ -179,6 +181,7 @@ export default {
         this.$set(this.cells[i], "4", e.target.innerText);
       }
       this.$set(this.cells[this.mainCellVal], i, e.target.innerText);
+      this.isChanged = true;
     },
     minClasses(i) {
       if(this.mainCellVal === "4" && i !== "4") {
@@ -205,6 +208,15 @@ export default {
     })
   },
   created() {
+    this.$nuxt.$on('CLOSE', () => {
+      if(this.isChanged) {
+        if(window.confirm('変更を放棄してもよろしいですか？')) {
+          this.$router.push('/');
+        }
+      } else {
+        this.$router.push('/');
+      }
+    });
     this.$nuxt.$on('SAVE', title => {
       if(this.isAlreadyCreated) {
         this.$store.dispatch('project/update', {index:this.$route.query.project, title:title, data:JSON.stringify(this.cells)})
@@ -234,6 +246,7 @@ export default {
   beforeDestroy() {
     this.$nuxt.$off('SAVE');
     this.$nuxt.$off('SCALE');
+    this.$nuxt.$off('CLOSE');
   }
 }
 </script>
