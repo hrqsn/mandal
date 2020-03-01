@@ -1,7 +1,7 @@
 <template>
-  <header class="o-footer">
-    <div class="o-footer__inner">
-      <span class="o-footer__title">Copyright ©︎ {{ new Date().getFullYear() }} Mandal by <a href="https://twitter.com/hrqsn" target="_blank" rel=”noopener”>@hrqsn</a>.</span>
+  <header class="footer">
+    <div class="footer-inner">
+      <span class="footer-title">Copyright ©︎ {{ new Date().getFullYear() }} Mandal by <a href="https://twitter.com/hrqsn" target="_blank" rel=”noopener”>@hrqsn</a>.</span>
     </div>
   </header>
 </template>
@@ -13,15 +13,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.o-footer {
+.footer {
   height: 48px;
   background-color: transparent;
-  &__inner {
+  &-inner {
     min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .o-footer__title {
+    .footer-title {
       color: #C6C6C6;
       text-align: center;
       width: 100%;

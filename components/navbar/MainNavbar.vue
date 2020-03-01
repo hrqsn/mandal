@@ -1,30 +1,38 @@
 <template>
   <div>
-    <header class="o-navBar" :data-open="isOpenVal">
-      <div class="o-navBar__inner">
-        <div class="o-navBar__empty"></div>
-        <span class="o-navBar__logo">Mandal</span>
-        <div class="o-navBar__nav">
-          <div class="o-navBar__navItem" @click="this.switch">
+    <header class="navbar" :data-open="isOpenVal">
+      <div class="navbar-inner">
+        <div class="navbar-empty"></div>
+        <span class="navbar-logo">Mandal</span>
+        <div class="navbar-nav">
+          <div class="navbar-navItem" @click="this.switch">
             <Switcher20 v-if="!isOpenVal" />
             <Close20 v-else />
           </div>
         </div>
       </div>
     </header>
-    <nav class="o-navBar__menu" :data-open="isOpenVal">
+    <nav class="navbar-menu" :data-open="isOpenVal">
       <ul>
         <li>
-          <a role="button" href="" class="o-navBar__menu--link">トップ</a>
+          <a role="button" href="" class="navbar-menu--link">トップ</a>
         </li>
         <li>
-          <a role="button" href="" class="o-navBar__menu--link">Mandalとは？</a>
+          <a role="button" href="" class="navbar-menu--link">Mandalとは？</a>
         </li>
-        <hr class="o-navBar__menu--divider">
         <li>
-          <a role="button" href="https://github.com/hrqsn/mandal" target="_blank" rel=”noopener” class="o-navBar__menu--link" style="margin-top: 1rem;">
+          <a role="button" href="https://twitter.com/hrqsn" target="_blank" rel=”noopener” class="navbar-menu--link">
+            <span>開発者</span>
+            <div class="navbar-menu--link-icon" style="fill: #55acee;">
+              <Twitter16 />
+            </div>
+          </a>
+        </li>
+        <hr class="navbar-menu--divider">
+        <li>
+          <a role="button" href="https://github.com/hrqsn/mandal" target="_blank" rel=”noopener” class="navbar-menu--link" style="margin-top: 1rem;">
             <span>GitHub</span>
-            <div class="o-navBar__menu--link-icon">
+            <div class="navbar-menu--link-icon">
               <Launch16 />
             </div>
           </a>
@@ -38,12 +46,14 @@
 import Switcher20 from '@carbon/icons-vue/lib/switcher/20';
 import Close20 from '@carbon/icons-vue/lib/close/20';
 import Launch16 from '@carbon/icons-vue/lib/launch/16';
+import Twitter16 from '@carbon/icons-vue/lib/logo--twitter/16';
 export default {
   name: 'md-navbar',
   components: {
     Switcher20,
     Close20,
-    Launch16
+    Launch16,
+    Twitter16
   },
   props: {
     isOpen: {
@@ -65,18 +75,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.o-navBar {
+.navbar {
   height: 48px;
   background-color: $background;
-  &__inner {
+  &-inner {
     min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .o-navBar__empty {
+    .navbar-empty {
       width: 100%;
     }
-    .o-navBar__logo {
+    .navbar-logo {
       color: $white;
       font-family: 'IBM Plex Sans', sans-serif;
       font-weight: 600;
@@ -84,12 +94,12 @@ export default {
       width: calc(100% - 16px);
       text-align: center;
     }
-    .o-navBar__title {
+    .navbar-title {
       color: $white;
       text-align: center;
       width: 100%;
     }
-    .o-navBar__nav {
+    .navbar-nav {
       width: 100%;
       display: flex;
       justify-content: flex-end;
@@ -109,7 +119,7 @@ export default {
     }
   }
 }
-.o-navBar__menu {
+.navbar-menu {
   &[data-open="true"] {
     transform: translateX(0);
     transition: all .15s cubic-bezier(0,0,.38,.9);

@@ -1,18 +1,18 @@
 <template>
-  <header class="o-navBar">
-    <div class="o-navBar__inner">
-      <div class="o-navBar__brand">
-        <div class="o-navBar__brandItem" @click="close">
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="navbar-brand">
+        <div class="navbar-brandItem" @click="close">
           <Close24 />
         </div>
       </div>
-      <span class="o-navBar__title">{{ this.title }}</span>
-      <div class="o-navBar__nav">
-        <div class="o-navBar__navItem" @click="scale">
+      <span class="navbar-title">{{ title }}</span>
+      <div class="navbar-nav">
+        <div class="navbar-navItem" @click="scale">
           <Number9 v-if="isMin" />
           <Number3 v-else />
         </div>
-        <div class="o-navBar__navItem" @click="save">
+        <div class="navbar-navItem" @click="save">
           <Checkmark20 />
         </div>
       </div>
@@ -27,9 +27,11 @@ import Number3 from '@carbon/icons-vue/lib/number--3/24';
 import Checkmark20 from '@carbon/icons-vue/lib/checkmark/20';
 export default {
   name: 'md-navbar',
+  props: {
+    title: String
+  },
   data() {
     return {
-      title: "メインテーマ",
       isMin: true
     }
   },
@@ -39,41 +41,33 @@ export default {
     Number3,
     Checkmark20
   },
-  created() {
-    this.$nuxt.$on('TITLE', title => {
-      this.title = title;
-    });
-  },
-  beforeDestroy() {
-    this.$nuxt.$off('TITLE');
-  },
   methods: {
     save() {
-      this.$nuxt.$emit('SAVE', this.title);
+      this.$emit('save', true)
     },
     scale() {
-      this.$nuxt.$emit('SCALE');
       this.isMin = !this.isMin;
+      this.$emit('scale', this.isMin)
     },
     close() {
-      this.$nuxt.$emit('CLOSE');
+      this.$emit('close');
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.o-navBar {
+.navbar{
   height: 48px;
   background-color: $background;
-  &__inner {
+  &-inner {
     min-height: 48px;
     width: calc(592px + 36px);
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .o-navBar__logo {
+    .navbar-logo {
       padding-left: 16px;
       fill: $white;
       font-family: 'IBM Plex Sans', sans-serif;
@@ -81,12 +75,12 @@ export default {
       font-size: 20px;
       width: calc(100% - 16px);
     }
-    .o-navBar__title {
+    .navbar-title {
       color: $white;
       text-align: center;
       width: 100%;
     }
-    .o-navBar__nav, .o-navBar__brand {
+    .navbar-nav, .navbar-brand {
       width: 100%;
       display: flex;
       justify-content: flex-end;
@@ -100,12 +94,12 @@ export default {
         fill: white;
       }
     }
-    .o-navBar__brand {
+    .navbar-brand {
       justify-content: flex-start;
     }
   }
   @include mqdown(sm) {
-    &__inner {
+    &-inner {
       width: 100%;
     }
   }

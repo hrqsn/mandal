@@ -1,24 +1,5 @@
 <template>
-  <div>
-    <!--   3*3
-          0 1 2
-          3 4 5
-          6 7 8   -->
-    <div class="o-panel">
-      <div class="o-panel__wrapper" v-if="isMin" data-min="true">
-        <div class="card" v-for="(cell, index) in cells" :key="cell.id" :data-cell=index :data-animation="isAnimation" v-on:click.self="move(index)" :class="minClasses(index)">
-          <span v-if='mainCellVal === "4" && index === "4"' contenteditable="true" class="editor" @focusout="title(index, $event)" v-text="cells[mainCellVal][`${index}`]"></span>
-          <span v-else contenteditable="true" class="editor" @focusout="onEdit(index, $event)" v-text="cells[mainCellVal][`${index}`]"></span>
-        </div>
-      </div>
-      <div class="o-panel__wrapper" v-else data-min="false">
-        <div class="cards" v-for="(cards, i) in cells" :key="cards.id" :data-animation="isAnimation" :data-card=i>
-          <div class="cardCell" v-for="(cell, j) in cards" :key="cell.id" :class="maxClasses(i, j)" :data-cell=j>
-            <span class="editor" v-text="cells[i][`${j}`]"></span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="report">
     <div class="overlay" v-if="isLoading">
       <div class="overlay-loading">
         <svg class="loading__svg" viewBox="-75 -75 150 150">
@@ -27,171 +8,30 @@
         </svg>
       </div>
     </div>
+    <div class="o-panel">
+      <div class="o-panel__wrapper">
+        <div class="cards" v-for="(cards, i) in cells" :key="cards.id" :data-card=i>
+          <div class="cardCell" v-for="(cell, j) in cards" :key="cell.id" :class="maxClasses(i, j)" :data-cell=j>
+            <span class="editor" v-text="cells[i][`${j}`]"></span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 export default {
-  name: 'md-panel',
   props: {
-    mainCell: {
-      type: String,
-      default: "4"
-    }
   },
   data () {
     return {
-      mainCellVal: this.mainCell,
       isLoading: false,
-      isMin: true,
-      isAnimation: true,
-      isAlreadyCreated: false,
-      isChanged: false,
-      cells: {
-        "0": {
-          "0": "",
-          "1": "",
-          "2": "",
-          "3": "",
-          "4": "",
-          "5": "",
-          "6": "",
-          "7": "",
-          "8": ""
-        },
-        "1": {
-          "0": "",
-          "1": "",
-          "2": "",
-          "3": "",
-          "4": "",
-          "5": "",
-          "6": "",
-          "7": "",
-          "8": ""
-        },
-        "2": {
-          "0": "",
-          "1": "",
-          "2": "",
-          "3": "",
-          "4": "",
-          "5": "",
-          "6": "",
-          "7": "",
-          "8": ""
-        },
-        "3": {
-          "0": "",
-          "1": "",
-          "2": "",
-          "3": "",
-          "4": "",
-          "5": "",
-          "6": "",
-          "7": "",
-          "8": ""
-        },
-        "4": {
-          "0": "",
-          "1": "",
-          "2": "",
-          "3": "",
-          "4": "メインテーマ",
-          "5": "",
-          "6": "",
-          "7": "",
-          "8": ""
-        },
-        "5": {
-          "0": "",
-          "1": "",
-          "2": "",
-          "3": "",
-          "4": "",
-          "5": "",
-          "6": "",
-          "7": "",
-          "8": ""
-        },
-        "6": {
-          "0": "",
-          "1": "",
-          "2": "",
-          "3": "",
-          "4": "",
-          "5": "",
-          "6": "",
-          "7": "",
-          "8": ""
-        },
-        "7": {
-          "0": "",
-          "1": "",
-          "2": "",
-          "3": "",
-          "4": "",
-          "5": "",
-          "6": "",
-          "7": "",
-          "8": ""
-        },
-        "8": {
-          "0": "",
-          "1": "",
-          "2": "",
-          "3": "",
-          "4": "",
-          "5": "",
-          "6": "",
-          "7": "",
-          "8": ""
-        }
-      }
+      cells: {}
     }
   },
   methods: {
-    // メインテーマ変更
-    title(i, e) {
-      this.$nuxt.$emit('TITLE', e.target.innerText);
-      this.$set(this.cells[this.mainCellVal], i, e.target.innerText);
-      this.isChanged = true;
-    },
-    move(d) {
-      // 中央のセルをタップするとメインテーマに戻る
-      if(this.isMin) {
-        if(d === "4") {
-          this.mainCellVal = "4";
-        } else {
-          if(this.mainCellVal !== "4") {
-            // メインテーマ以外では次のセルへ移動しない
-            this.mainCellVal = this.mainCellVal;
-          } else {
-            // 移動
-            this.mainCellVal = d;
-            this.isAnimation = false;
-          }
-        }
-      }
-    },
-    // サブテーマ変更
-    onEdit(i, e) {
-      if(this.mainCellVal === "4") {
-        this.$set(this.cells[i], "4", e.target.innerText);
-      }
-      this.$set(this.cells[this.mainCellVal], i, e.target.innerText);
-      this.isChanged = true;
-    },
-    minClasses(i) {
-      if(this.mainCellVal === "4" && i !== "4") {
-        return "subTheme";
-      } else if(this.mainCellVal !== "4" && i === "4") {
-        return "subTheme";
-      } else if(this.mainCellVal === "4" && i === "4") {
-        return "mainTheme";
-      }
-    },
     maxClasses(i, j) {
       if(i !== "4" && j === "4") {
         return "subTheme";
@@ -200,6 +40,9 @@ export default {
       } else if(i === "4" && j === "4") {
         return "mainTheme";
       }
+    },
+    exportPdf() {
+      
     }
   },
   computed: {
@@ -207,46 +50,9 @@ export default {
       data: 'project/getItems'
     })
   },
-  created() {
-    this.$nuxt.$on('CLOSE', () => {
-      if(this.isChanged) {
-        if(window.confirm('変更を放棄してもよろしいですか？')) {
-          this.$router.push('/');
-        }
-      } else {
-        this.$router.push('/');
-      }
-    });
-    this.$nuxt.$on('SAVE', title => {
-      if(this.isAlreadyCreated) {
-        this.$store.dispatch('project/update', {index:this.$route.query.project, title:title, data:JSON.stringify(this.cells)})
-      } else {
-        this.$store.dispatch('project/save', {title:title, data:JSON.stringify(this.cells)})
-      }
-      this.isLoading = true;
-      // 擬似ローディング
-      setTimeout(() => {
-        this.isLoading = false;
-        this.$router.push('/')
-      }, 1000)
-    });
-    this.$nuxt.$on('SCALE', () => {
-      this.isMin = !this.isMin;
-      this.isAnimation = false;
-    });
-  },
   mounted() {
-    if(this.$route.query.project) {
-      var cellData = this.data[this.$route.query.project]["data"];
-      this.cells = JSON.parse(cellData);
-      this.$nuxt.$emit('TITLE', this.cells["4"]["4"]);
-      this.isAlreadyCreated = true;
-    }
-  },
-  beforeDestroy() {
-    this.$nuxt.$off('SAVE');
-    this.$nuxt.$off('SCALE');
-    this.$nuxt.$off('CLOSE');
+    this.cells = JSON.parse(this.$route.params.data.data);
+    this.exportPdf();
   }
 }
 </script>
@@ -301,7 +107,6 @@ export default {
   }
 }
 .o-panel {
-  height: calc(100vh - 96px);
   display: flex;
   align-items: center;
   justify-content: center;
