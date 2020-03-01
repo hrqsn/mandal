@@ -21,12 +21,12 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "cross-env": "^7.0.0",
-    "firebase": "^7.9.1",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "nuxt-webfontloader": "^1.1.0",
     "sass-loader": "^8.0.2",
-    "viewport-units-buggyfill": "^0.6.2"
+    "viewport-units-buggyfill": "^0.6.2",
+    "vuex-persistedstate": "^2.7.1"
   },
   "devDependencies": {}
 }

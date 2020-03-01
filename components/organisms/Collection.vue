@@ -5,23 +5,35 @@
       <nuxt-link to="/create" class="card skeleton">
         <span>マンダルを作成<Add20 /></span>
       </nuxt-link>
-      <div class="card">
-        <span>勉強</span>
-      </div>
-      <div class="card">
-        <span>開発</span>
-      </div>
+      <nuxt-link class="card" :to="{ name: 'create', query: { project: project.id }, params: { project: project } }" v-for="(project) in projects" :key="project.id">
+        <span>{{ project.title }}</span>
+      </nuxt-link>
       <div class="card transparent last"></div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Add20 from '@carbon/icons-vue/lib/add/20';
+
 export default {
   name: 'md-collection',
   components: {
     Add20
+  },
+  data() {
+    return {
+      projects: {}
+    }
+  },
+  computed: {
+    ...mapGetters({
+      data: 'project/getItems'
+    })
+  },
+  mounted() {
+    if(this.data) this.projects = this.data.slice().reverse();
   }
 }
 </script>
@@ -58,6 +70,7 @@ export default {
       text-align: center;
       cursor: pointer;
       transition: all 70ms cubic-bezier(0,0,.38,.9);
+      color: #161616;
       span {
         width: 100%;
         display: flex;

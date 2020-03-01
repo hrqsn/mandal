@@ -1,7 +1,7 @@
 <template>
   <header class="o-footer">
     <div class="o-footer__inner">
-      <span class="o-footer__title">Copyright ©︎ {{ new Date().getFullYear() }} Mandal by <a href="https://twitter.com/hrqsn">@hrqsn</a>.</span>
+      <span class="o-footer__title">Copyright ©︎ {{ new Date().getFullYear() }} Mandal by <a href="https://twitter.com/hrqsn" target="_blank" rel=”noopener”>@hrqsn</a>.</span>
     </div>
   </header>
 </template>
@@ -26,7 +26,6 @@ export default {
       text-align: center;
       width: 100%;
       font-size: 14px;
-      font-family: 'IBM Plex Sans', sans-serif;
       a {
         color: #00acee;
       }

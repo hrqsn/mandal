@@ -5,9 +5,10 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Mandal🔮',
     meta: [
       { charset: 'utf-8' },
+      { lang: 'ja' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
@@ -27,7 +28,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/vubuggyfill.js' }
+    { src: '~/plugins/vubuggyfill.js' },
+    { src: "~plugins/persistedstate.js", ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules

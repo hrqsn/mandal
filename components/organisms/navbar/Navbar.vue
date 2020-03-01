@@ -8,10 +8,11 @@
       </div>
       <span class="o-navBar__title">{{ this.title }}</span>
       <div class="o-navBar__nav">
-        <div class="o-navBar__navItem">
-          <Number />
+        <div class="o-navBar__navItem" @click="scale">
+          <Number9 v-if="isMin" />
+          <Number3 v-else />
         </div>
-        <div class="o-navBar__navItem">
+        <div class="o-navBar__navItem" @click="save">
           <Checkmark20 />
         </div>
       </div>
@@ -21,18 +22,21 @@
 
 <script>
 import Close24 from '@carbon/icons-vue/lib/close/24';
-import Number from '@carbon/icons-vue/lib/number--9/24';
+import Number9 from '@carbon/icons-vue/lib/number--9/24';
+import Number3 from '@carbon/icons-vue/lib/number--3/24';
 import Checkmark20 from '@carbon/icons-vue/lib/checkmark/20';
 export default {
   name: 'md-navbar',
   data() {
     return {
-      title: "メインテーマ"
+      title: "メインテーマ",
+      isMin: true
     }
   },
   components: {
     Close24,
-    Number,
+    Number9,
+    Number3,
     Checkmark20
   },
   created() {
@@ -42,6 +46,15 @@ export default {
   },
   beforeDestroy() {
     this.$nuxt.$off('TITLE');
+  },
+  methods: {
+    save() {
+      this.$nuxt.$emit('SAVE', this.title);
+    },
+    scale() {
+      this.$nuxt.$emit('SCALE', this.title);
+      this.isMin = !this.isMin;
+    }
   }
 }
 </script>
