@@ -8,7 +8,7 @@
     <div class="panel">
       <div class="panel-wrapper" v-if="isMin" data-min="true">
         <div class="card" v-for="(cell, index) in cells" :key="cell.id" :data-cell=index :data-animation="isAnimation" v-on:click.self="move(index)" :class="minClasses(index)">
-          <span v-if='mainCellVal === "4" && index === "4"' contenteditable="true" class="editor" @focusout="editTitle(index, $event)" v-text="cells[mainCellVal][`${index}`]"></span>
+          <span v-if='mainCellVal === "4" && index === "4"' id="cell-title" contenteditable="true" autofocus="true" class="editor title" @focusout="editTitle(index, $event)" v-text="cells[mainCellVal][`${index}`]"></span>
           <span v-else contenteditable="true" class="editor" @focusout="onEdit(index, $event)" v-text="cells[mainCellVal][`${index}`]"></span>
         </div>
       </div>
@@ -194,6 +194,8 @@ export default {
     onEdit(i, e) {
       if(this.mainCellVal === "4") {
         this.$set(this.cells[i], "4", e.target.innerText);
+      } else if(i === "4") {
+        this.$set(this.cells["4"], this.mainCellVal, e.target.innerText);
       }
       this.$set(this.cells[this.mainCellVal], i, e.target.innerText);
       this.isChanged = true;
@@ -253,6 +255,8 @@ export default {
     })
   },
   mounted() {
+    // メインテーマをフォーカス
+    document.getElementById('cell-title').focus();
     // 作成済のデータの場合
     if(this.$route.query.project !== undefined) {
       // 存在しないデータ
