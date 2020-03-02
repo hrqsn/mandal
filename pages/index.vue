@@ -11,9 +11,9 @@
           <nuxt-link :to="{name:'create', query:{ project: project.id }, params:{project: project}}">
             <span>{{ project.title }}</span>
           </nuxt-link>
-          <div class="download" @click="download(project)">
+          <!-- <div class="download" @click="download(project)">
             <Download20 />
-          </div>
+          </div> -->
         </div>
         <div class="card transparent last"></div>
       </div>
@@ -116,6 +116,7 @@ export default {
         z-index: 1;
         padding: 8px;
         fill: #161616;
+        border-bottom-right-radius: 2px;
         &:hover {
           background-color: #e5e5e5;
           +.card {

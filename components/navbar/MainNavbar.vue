@@ -15,10 +15,10 @@
     <nav class="navbar-menu" :data-open="isOpenVal">
       <ul>
         <li>
-          <a role="button" href="" class="navbar-menu--link">トップ</a>
+          <a role="button" href="/" class="navbar-menu--link">トップ</a>
         </li>
         <li>
-          <a role="button" href="" class="navbar-menu--link">Mandalとは？</a>
+          <a role="button" href="/about" class="navbar-menu--link">Mandalとは？</a>
         </li>
         <li>
           <a role="button" href="https://twitter.com/hrqsn" target="_blank" rel=”noopener” class="navbar-menu--link">

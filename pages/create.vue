@@ -56,12 +56,12 @@ export default {
   data () {
     return {
       mainCellVal: this.mainCell,
+      titleVal: this.title,
       isLoading: false,
       isMin: true,
       isAnimation: true,
       isAlreadyCreated: false,
       isChanged: false,
-      titleVal: this.title,
       cells: {
         "0": {
           "0": "",
